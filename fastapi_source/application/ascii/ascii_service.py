@@ -1,6 +1,8 @@
-import io, numpy as np
-from typing import List
+import io
+
+import numpy as np
 from PIL import Image, ImageDraw
+
 
 def __get_image_from_bytes(byte_contents: bytes) -> Image:
     """_summary_
@@ -18,16 +20,16 @@ def get_mosaic_image(contents: bytes, block_size:int=10) -> Image:
         block_size (int, optional): Sidelength of a mosaic block. Defaults to 10.
     Returns:
         Image: Output image.
-    """ 
+    """
     image = __get_image_from_bytes(contents)
 
     img = np.array(image)
-    
+
     #get height and width of image
     height, width, _ = img.shape
 
     #create an empty image
-    result = Image.new('RGBA', (width, height), (0, 0, 0, 0)) 
+    result = Image.new('RGBA', (width, height), (0, 0, 0, 0))
     draw = ImageDraw.Draw(result)
 
     #split image "blocks"
@@ -51,6 +53,6 @@ def get_mosaic_image(contents: bytes, block_size:int=10) -> Image:
 
             #draw the block
             draw.rectangle([x, y, x+block_size, y+block_size], fill=color)
-            
+
     return result
 

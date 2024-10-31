@@ -1,12 +1,14 @@
-import uvicorn
 import re
-import webbrowser
 import threading
 import time
+import webbrowser
+
+import uvicorn
 from fastapi import FastAPI
-from fastapi_source.host.ascii_art_routes import router as ascii_router
 from starlette.routing import Route
+
 from fastapi_source.core.config import settings
+from fastapi_source.host.ascii_art_routes import router as ascii_router
 
 # Initialize FastAPI app with project metadata
 app = FastAPI(
